@@ -1,0 +1,134 @@
+.navbar {
+  font-family: Calibri;
+  padding: 15px;
+  font-size: 1em;
+  letter-spacing: 3px;
+  background-color: orangered;
+  color: white;
+
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+  margin: 10px;
+
+}
+
+.navbar-light .navbar-nav .active .nav-link {
+  color: white;
+}
+
+.navbar-nav li a:hover {
+  color: aqua !important;
+}
+
+header {
+  text-align: center;
+  margin: 0 !important;
+}
+
+.loginLink {
+  text-align: center;
+  padding: 15px;
+}
+
+.pagenotfound {
+  background: url('https://s3.us-east-2.amazonaws.com/devh2o/Static/I/errorpage.jpg') center center no-repeat;
+  background-size: cover;
+  min-height: 700px;
+  h4 {
+    color: white;
+  }
+}
+
+.loginform {
+  padding: 10px;
+
+}
+
+footer {
+  li {
+    list-style-type: none;
+    margin-bottom: 11px;
+    padding: 5px;
+
+  }
+  .footer1 {
+    margin-bottom: 0 !important;
+  }
+  .icon {
+    font-size: 2em;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+
+  }
+  .social-icons .fa-facebook {
+
+    @extend .icon;
+    background-color: #3C599F;
+
+  }
+
+  .social-icons .fa-google-plus {
+    @extend .icon;
+    background-color: #CF3D2E;
+
+  }
+
+  .social-icons .fa-twitter {
+    @extend .icon;
+    background-color: #32CCFE;
+
+  }
+
+  .social-icons .fa-pinterest {
+    @extend .icon;
+    background-color: #CC2127;
+
+  }
+
+  .social-icons .fa {
+    padding: 10px;
+    text-align: center;
+    font-family: FontAwesome;
+
+  }
+
+  .fa-facebook:hover {
+    opacity: 0.7;
+
+  }
+
+  .fa-google-plus:hover {
+    opacity: 0.7;
+
+  }
+
+  .fa-pinterest:hover {
+    opacity: 0.7;
+
+  }
+
+  .fa-twitter:hover {
+    opacity: 0.7;
+
+  }
+
+  .footer-heading {
+    text-decoration: underline;
+    color: antiquewhite;
+
+  }
+
+  .copyright {
+    margin-bottom: 0 !important;
+    padding: 10px;
+    background-color: aquamarine;
+    font-family: initial;
+    text-align: center;
+  }
+
+}
+
+
