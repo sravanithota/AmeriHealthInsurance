@@ -1,13 +1,12 @@
 /**
  * Created by Sravani on 2/13/2017.
  */
-import {browserHistory} from "react-router";
 export const isLoggedIn = () => {
-    if (localStorage.getItem("token")) {
-        return true;
+    if(localStorage.getItem("token")===null) {
+        return false;
     }
     else {
-        return false;
+        return true;
 
     }
 

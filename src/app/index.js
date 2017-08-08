@@ -11,6 +11,7 @@ import {SignupPage} from './components/Signup';
 import {Login} from './components/Login';
 import {DashBoardContainer} from './containers/DashBoardContainer';
 import store from './store/store';
+import {Payer} from './users/Payer';
 
 require("./stylesheets/scss/styles.scss");
 
@@ -23,8 +24,11 @@ export class App extends React.Component {
                     <Route path={"/"} component={Root}>
                         <IndexRoute component={Home}/>
                         <Route path={"login"} component={Login}/>
-                        <Route path={"signup"} component={SignupPage}/>
-                        <Route path={"dashboard"} component={DashBoardContainer}/>
+                    </Route>
+                    <Route path={"/payer"} component={Payer}>
+                        <IndexRoute component={DashBoardContainer}/>
+
+
                     </Route>
 
                 </Router>

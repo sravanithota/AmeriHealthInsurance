@@ -20,7 +20,6 @@ export class Home extends React.Component {
             payerOpen: false
         }
     }
-
     render() {
         return (
             <div className="home">

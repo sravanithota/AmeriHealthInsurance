@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from 'react-router';
-
+import axios from 'axios';
+import { isLoggedIn } from '../constants/isLoggedIn';
 const logo = require('../images/amerihealth-logo.jpg');
 
 export default class Header extends React.Component {
@@ -11,9 +12,10 @@ export default class Header extends React.Component {
             afterSignInLink: "hide",
         }
     }
+
     componentWillMount() {
 
-        if (IsLoggedIn()) {//logged in
+        if (isLoggedIn()) {//logged in
             this.setState({
                 beforeSignInLink: "hide",
                 afterSignInLink: "show"
@@ -27,26 +29,43 @@ export default class Header extends React.Component {
             });
         }
     }
-    OnLogout(e) {
-        // e.preventDefault();
-        console.log("Header : OnLogout: /logoutuser service started.....");
-        Request.get('http://localhost:8080/signout')
-            .end((err, res) => {
-                if (!err && res) {
-                    if (res.body.error) {//error
-                        console.log("Header : OnLogout: /logoutuser service : Error in logout ", res);
-                    }
-                    else {//success
-                        console.log("Header : OnLogout: /logoutuser service : Logout Success : ", res);
-                        location.reload();
-                        browserHistory.push("/signin");
-                    }
+
+    signout(e) {
+        var token = localStorage.getItem("token");
+        console.log("tokennnnnnnnnnn" + token);
+        var config = {
+            headers: {'Content-Type': 'application/json', 'token': token}
+        };
+
+        axios.post("http://localhost:8080/signout", config)
+            .then((res) => {
+                console.log(res);
+                this.signoutCallBack(res.data);
+            })
+            .catch((err) => {
+                    console.log("server error");
                 }
-                else {
-                    console.log("Header : OnLogout: /logoutuser service : Server ", err);
-                }
-            });
+            )
+
     }
+
+    signoutCallBack(result) {
+        if (result.error) {
+            localStorage.removeItem("token");
+            localStorage.removeItem("partnerName");
+            console.log("error in result body");
+        } else {
+
+            localStorage.removeItem("token");
+            localStorage.removeItem("partnerName");
+            location.reload();
+            browserHistory.push('/');
+            console.log("successfully signedout");
+
+        }
+
+    }
+
     render() {
         return (
             <div>
@@ -67,14 +86,19 @@ export default class Header extends React.Component {
                                 <li className={this.state.beforeSignInLink}><Link to={""}>Home</Link></li>
                                 <li className={this.state.beforeSignInLink}><Link to={"/"}>Providers</Link></li>
                                 <li className={this.state.beforeSignInLink}><Link to={"/"}>About Us</Link></li>
-                                <li className={this.state.afterSignInLink}><Link to={"/signin"}  onClick={this.OnLogout.bind(this)}>SignOut</Link></li>
 
                             </ul>
                             <ul className="nav navbar-nav navbar-right">
-                                <form className="form-inline search-bar">
-                                    <input className="form-control" type="text" placeholder="Search"/>
-                                    <button className="btn btn-outline-success" type="submit">Go</button>
-                                </form>
+                                <li className={this.state.afterSignInLink}><Link to={"/login"}
+                                                                                 onClick={this.signout.bind(this)}>SignOut</Link>
+                                </li>
+                                <li className={this.state.beforeSignInLink}>
+                                    <form className="form-inline search-bar">
+                                        <input className="form-control" type="text" placeholder="Search"/>
+                                        <button className="btn btn-outline-success" type="submit">Go</button>
+                                    </form>
+                                </li>
+
                             </ul>
                         </div>
                     </div>

@@ -14,16 +14,16 @@ export class Login extends React.Component {
         };
     }
 
-    /*
-     componentWillMount() {
-     if (isLoggedIn()) {
 
-     browserHistory.push("/");
-     } else {
-     browserHistory.push("/");
-     }
+    componentWillMount() {
+        if (isLoggedIn()===false) {
 
-     }*/
+            browserHistory.push("/login");
+        } else {
+            browserHistory.push("/payer");
+        }
+
+    }
 
     onClickSubmit(e) {
         e.preventDefault();
@@ -53,7 +53,7 @@ export class Login extends React.Component {
         } else {
             console.log("token and pname", result.datares.token, result.datares.pname);
             location.reload();
-            browserHistory.push("/dashboard");
+            browserHistory.push("/payer");
             localStorage.setItem("token", result.datares.token);
             localStorage.setItem("partnerName", result.datares.partnerName);
 
