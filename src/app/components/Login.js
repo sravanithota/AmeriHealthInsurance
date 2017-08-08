@@ -3,12 +3,13 @@ import axios from "axios";
 import {browserHistory} from "react-router";
 
 import {isLoggedIn} from "../constants/isLoggedIn";
+
 export class Login extends React.Component {
 
     constructor() {
         super();
         this.state = {
-            emailId: "",
+            username: "",
             password: ""
         };
     }
@@ -27,13 +28,13 @@ export class Login extends React.Component {
     onClickSubmit(e) {
         e.preventDefault();
         var signInData = {
-            emailId: this.state.emailId,
+            username: this.state.username,
             password: this.state.password
         };
-        console.log("email id", signInData.emailId);
+        console.log("username", signInData.username);
         console.log("password", signInData.password);
 
-        axios.post('/signin', signInData)
+        axios.post('http://localhost:8080/signin', signInData)
             .then((res) => {
                 console.log("Login response", res);
                 this.onClickSubmitCallBack(res.data);
@@ -52,7 +53,7 @@ export class Login extends React.Component {
         } else {
             console.log("token and pname", result.datares.token, result.datares.pname);
             location.reload();
-            browserHistory.push("/home");
+            browserHistory.push("/dashboard");
             localStorage.setItem("token", result.datares.token);
             localStorage.setItem("partnerName", result.datares.partnerName);
 
@@ -65,14 +66,15 @@ export class Login extends React.Component {
 
         return (
             <div className="container-fluid">
-                <div className="row justify-content-center">
-                    <div className="col-xs-12 col-sm-10 col-md-8 col-lg-6 loginform">
+                <div className="row">
+                    <div
+                        className="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-8  col-xs-12 loginform">
                         <div className="form-group ">
                             <br/> <br/>  <h3><b>Login to Your Account</b></h3><br/>
                             <form onSubmit={this.onClickSubmit.bind(this)}>
                                 <input className="form-control" type="text" id="user" placeholder="Username"
-                                       value={this.state.emailId} onChange={(e) => {
-                                    this.setState({emailId: e.target.value})
+                                       value={this.state.username} onChange={(e) => {
+                                    this.setState({username: e.target.value})
                                 }}/><br/>
                                 <input className="form-control" type="password" id="pass" placeholder="Password"
                                        value={this.state.password} onChange={(e) => {
