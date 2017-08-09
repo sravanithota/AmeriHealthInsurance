@@ -154,4 +154,46 @@ footer {
 
 }
 
+.sidebar-wrapper {
+  background-color: black;
+  color: lightgrey;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left;
+
+  .sidebar-nav {
+    list-style-type: none;
+    padding-left: 0 !important;
+    margin-top: 20px;
+
+  }
+  .sidebar-nav ul {
+    margin: 0 !important;
+
+  }
+
+}
+
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+}
+
+.sidebar-nav li a:hover {
+  text-decoration: none;
+}
+
+.sidebar-nav li {
+  color: #999999;
+  padding: 18px;
+  font-family: "lato", sans-serif;
+  font-size: 1.3em;
+}
+
+.sidebar-nav li:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 0 !important;
+}
+
 

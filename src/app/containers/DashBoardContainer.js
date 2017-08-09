@@ -17,10 +17,7 @@ export class DashBoardContainer extends React.Component {
             <div className="container-fluid">
                 <h1>Dashboard</h1>
                 <div className="row">
-                    <div className="col-xs-4 ">
 
-
-                    </div>
 
                 </div>
             </div>
